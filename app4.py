@@ -5,31 +5,6 @@ import os
 import json
 import PIL
 import streamlit as st
-from streamlit import runtime
-from streamlit.runtime.scriptrunner import get_script_run_ctx
-
-
-def get_remote_ip() -> str:
-    """Get remote ip."""
-
-    try:
-        ctx = get_script_run_ctx()
-        if ctx is None:
-            return None
-
-        session_info = runtime.get_instance().get_client(ctx.session_id)
-        if session_info is None:
-            return None
-    except Exception as e:
-        return None
-
-    return session_info.request.remote_ip
-
-
-import streamlit as st
-
-st.title("Title")
-st.markdown(f"The remote ip is {get_remote_ip()}")
 st.title("Content generator")
 st.header("Inputs for the story")
 genres = [
@@ -118,7 +93,7 @@ with st.form("Inputs or login"):
 if get_story:
     d = {"ugak":ugak,"uhfak": uhfak,"prompt": prompt,"Age":Age,"rs":rs,"g":g,"l":l}
     st.write("Your prompt " ,prompt)
-    ur1 = f"{get_remote_ip()}:5003/invocations"
+    ur1 = f"127.0.0.1:5003/invocations"
     #data = {"inputs":d}
     payl = json.dumps(d)
     st.header("Response section")
