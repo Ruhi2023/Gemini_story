@@ -12,6 +12,7 @@ genres = [
 "Fantasy",
 "Mystery",
 "Thriller",
+"Romance",
 "Horror",
 "Young Adult (YA)",
 "Historical Fiction",
@@ -69,7 +70,7 @@ genres = [
 "Fantasy YA",
 "Science Fiction YA",
 ]
-os.environ['GOOGLE_NO_KAGI'] = "AIzaSyDoqd4CbQxrDGUuA12rz36mUS2asmGDmxY"
+os.environ['GOOGLE_NO_KAGI'] = 'AIzaSyDoqd4CbQxrDGUuA12rz36mUS2asmGDmxY'
 os.environ['HUGGINGKAO_NO_KAGI'] = "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"
 
 with st.form("Inputs or login"):
@@ -92,7 +93,7 @@ with st.form("Inputs or login"):
 if get_story:
     d = {"ugak":ugak,"uhfak": uhfak,"prompt": prompt,"Age":Age,"rs":rs,"g":g,"l":l}
     st.write("Your prompt " ,prompt)
-    ur1 = "http://0.0.0.0:5003/invocations"
+    ur1 = "http://127.0.0.1:5003/invocations"
     #data = {"inputs":d}
     payl = json.dumps(d)
     st.header("Response section")
@@ -101,7 +102,7 @@ if get_story:
     prog_bar = st.progress(2)
     res2 = requests.post(
         url = ur1,
-        data = payl,
+        json = d,
         headers={"Content-Type": "application/json"}
     )
     # ... (parse response and update app
