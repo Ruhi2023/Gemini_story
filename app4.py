@@ -93,7 +93,7 @@ with st.form("Inputs or login"):
 if get_story:
     d = {"ugak":ugak,"uhfak": uhfak,"prompt": prompt,"Age":Age,"rs":rs,"g":g,"l":l}
     st.write("Your prompt " ,prompt)
-    ur1 = "http://0.0.0.0:5003/invocations"
+    ur1 = "https://0.0.0.0:5003/invocations"
     #data = {"inputs":d}
     payl = json.dumps(d)
     st.header("Response section")
