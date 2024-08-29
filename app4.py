@@ -1,5 +1,6 @@
 import PIL.Image
 #from fastapi import FastAPI 
+from back_end import gen_text as mg
 import requests
 import os
 import json
@@ -70,8 +71,7 @@ genres = [
 "Fantasy YA",
 "Science Fiction YA",
 ]
-os.environ['GOOGLE_NO_KAGI'] = 'AIzaSyDoqd4CbQxrDGUuA12rz36mUS2asmGDmxY'
-os.environ['HUGGINGKAO_NO_KAGI'] = "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"
+
 
 with st.form("Inputs or login"):
     ugak = os.environ['GOOGLE_NO_KAGI']
@@ -93,19 +93,13 @@ with st.form("Inputs or login"):
 if get_story:
     d = {"ugak":ugak,"uhfak": uhfak,"prompt": prompt,"Age":Age,"rs":rs,"g":g,"l":l}
     st.write("Your prompt " ,prompt)
-    ur1 = "http://0.0.0.0:5003/invocations"
-    payl = json.dumps(d)
+                       
     st.header("Response section")
-    # place_holder2= st.empty()
-    # place_holder2.image("decide_later.png",caption="The place holder image")
+    
     prog_bar = st.progress(2)
-    res2 = requests.post(
-        url = ur1,
-        json = d,
-        headers={"Content-Type": "application/json"}
-    )
+     
     # ... (parse response and update app
-    output_dict = res2.json()
+    output_dict = mg(d=d)
     #st.write(output_dict)                   # uncomment if you want to print the output dictionary
     try:
         acc = output_dict['keys']
