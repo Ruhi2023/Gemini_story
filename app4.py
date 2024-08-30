@@ -181,4 +181,5 @@ if get_story:
     image.save("pages/Cover.png")
     prog_bar.progress(100)
     st.write("Your cover image and story has been generated. You can view it below")
+    st.switch_page("pages/Stories_page.py")
     st.page_link("pages/Stories_page.py", label = "view story", icon = "📖", )
