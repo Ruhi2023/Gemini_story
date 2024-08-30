@@ -62,19 +62,20 @@ col_not_img1,col_not_img2,col_not_img3 = st.columns([3,2,1])
 
 if col_not_img3.button(""":material/Share: Share app"""):
     share_app()
-col1,col2,col3 = st.columns(3)
+
 if "story" in st.session_state:
-    st.header("Response Stories")
+    st.header(st.session_state["title"])
+    col1,col2,col3 = st.columns(3)
 
     col2.image("pages/Cover.png")
-    st.write(st.session_state["title"])
 
     stor = st.session_state["story"]
     chan =chr(92) +"n"
     stor = stor.replace(chan, "<br>")
+    
     st.write(stor, unsafe_allow_html=True)
     if st.button(":material/download: Download Story"):
-         share_story()  
+         share_story()   
          
 else:
     st.write("Go to generate stories")
