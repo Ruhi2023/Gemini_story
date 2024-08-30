@@ -183,7 +183,7 @@ if get_story:
     prog_bar.progress(100)
     st.write("Your cover image and story has been generated. You will be redirected automatically or use the button below.")
     
-    if "story" in st.sessionstate:
+    if "story" in st.session_state:
         if st.button(":material/local_library: Read story"):
             st.switch_page("pages/Stories_page.py" )
     time.sleep(2)
