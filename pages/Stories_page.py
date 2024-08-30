@@ -3,14 +3,20 @@ import os
 import streamlit.components.v1 as cpm
 
 
-@st.dialog("Share Story")
+@st.dialog("Download")
 def share_story():
-    if st.button("Download_cover"):
+    c1_ss,c2_ss = st.columns(2)
+    if "story" in st.session_state:  
         with open("pages/Cover.png","rb") as img:
-            st.download_button("Download",data =img,mime="image/png",file_name="Cover.png")
-    if st.button("Download_story"):
-        st.download_button("Download story",data =st.session_state["story"],mime="text/plain",file_name="story.txt")
-    if st.button("Share"):
+            c1_ss.download_button(":material/download: image :material/image: ",data =img,mime="image/png",file_name="Cover.png")
+        c2_ss.download_button(":material/download: text :material/Description:",data =st.session_state["story"],mime="text/plain",file_name="story.txt")
+    else:
+         st.write("Generate your story to download it")
+    
+
+@st.dialog("Share APP")
+def share_app():
+     if st.button(":material/Share: Share :sunglasses:"):
         c1,c2,c3,c5,c4 = st.columns(5)
 
         twitter=  """
@@ -52,13 +58,10 @@ def share_story():
 
 
 
-
 col_not_img1,col_not_img2,col_not_img3 = st.columns([3,2,1])
 
-if col_not_img3.button("""Download 
-                       and 
-                       Share"""):
-    share_story()
+if col_not_img3.button(""":material/Share: Share app"""):
+    share_app()
 col1,col2,col3 = st.columns(3)
 if "story" in st.session_state:
     st.header("Response Stories")
@@ -70,10 +73,11 @@ if "story" in st.session_state:
     chan =chr(92) +"n"
     stor = stor.replace(chan, "<br>")
     st.write(stor, unsafe_allow_html=True)
-         
+    if st.button(":material/download: Download Story"):
+         share_story()  
          
 else:
     st.write("Go to generate stories")
     if st.button("Go home"):
-        st.switch_page("app4.py")
+        st.switch_page("pages/app4.py")
 
