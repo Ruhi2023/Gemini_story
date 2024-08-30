@@ -1,6 +1,7 @@
 import PIL.Image
 #from fastapi import FastAPI 
 from back_end import gen_text as mg
+import time
 import requests
 import os
 import json
@@ -180,6 +181,10 @@ if get_story:
     
     image.save("pages/Cover.png")
     prog_bar.progress(100)
-    st.write("Your cover image and story has been generated. You can view it below")
+    st.write("Your cover image and story has been generated. You will be redirected automatically or use the button below.")
+    
+    if "story" in st.sessionstate:
+        if st.button(":material/local_library: Read story"):
+            st.switch_page("pages/Stories_page.py" )
+    time.sleep(2)
     st.switch_page("pages/Stories_page.py")
-    st.page_link("pages/Stories_page.py", label = "view story", icon = "📖", )
