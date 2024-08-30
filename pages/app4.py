@@ -130,6 +130,8 @@ if get_story:
         st.write(txst )
     content = output_dict[acc[1]].replace(cha2,cha3)
     content = content.replace(chan2,chan)
+    content = content.removesuffix('"')
+    content =content.removeprefix('"')
     st.session_state.story = content
     prog_bar.progress(20)
     #st.write(st.session_state.story)
