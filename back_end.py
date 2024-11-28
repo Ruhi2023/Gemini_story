@@ -5,7 +5,7 @@ def gen_text(d):
     generation_config = {
           "temperature": 0.9,
           "top_p": 0.95,
-          "top_k": 64,
+          "top_k": 20,
           "max_output_tokens": 8192,
           "response_mime_type": "text/plain",
         }
